@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  database_psql:
+    container_name: database_psql
+    image: postgres:12-alpine
+    env_file:
+      - ./.env
+    ports:
+      - "5433:5432"
+    restart: always
+
+  api-node:
+    build: .
+    command: yarn dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app/:rw
+    env_file:
+      - ./.env
