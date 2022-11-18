@@ -1,0 +1,36 @@
+{
+  "name": "ngcash_test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:guilopreti/ngcash_test.git",
+  "author": "<guilherme.llopreti@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --files --ignore src/node_modules src/server.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "build": "tsc",
+    "start": "node dist/src/server.js"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/node": "^18.11.9",
+    "@types/pg": "^8.6.5",
+    "@types/uuid": "^8.3.4",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.5.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.10",
+    "uuid": "^9.0.0"
+  }
+}
