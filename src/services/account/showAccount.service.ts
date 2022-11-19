@@ -14,7 +14,7 @@ export default class ShowAccountService {
     });
 
     if (!user) {
-      throw new AppError("This user account doesn't exist!", 404);
+      throw new AppError("Your account was not found.", 404);
     }
 
     return user.account;
