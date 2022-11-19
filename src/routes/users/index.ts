@@ -13,4 +13,6 @@ usersRouter
     UserController.store
   );
 
+usersRouter.route("/login").post(UserController.login);
+
 export default usersRouter;

@@ -17,7 +17,7 @@ export default class CreateUserService {
     });
 
     if (usernameAlreadyExists) {
-      throw new AppError("This username already exists!", 404);
+      throw new AppError("This username already exists!");
     }
 
     const userAccount = accountReporsitory.create({
