@@ -3,12 +3,13 @@ import CreateTransactionService from "../services/transactions/createTransaction
 
 export default class TransactionController {
   static async store(req: Request, res: Response) {
-    const data = req.body;
-    const { user_id } = req;
+    const { value } = req.body;
+    const { creditedAccount_id, debitedAccount_id } = req;
 
     const transaction = await CreateTransactionService.execute({
-      ...data,
-      user_id,
+      value,
+      creditedAccount_id,
+      debitedAccount_id,
     });
 
     return res.status(201).json(transaction);
