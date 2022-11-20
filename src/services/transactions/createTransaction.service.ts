@@ -3,26 +3,29 @@ import { Account } from "../../entities/accounts.entity";
 import { Transaction } from "../../entities/transactions.entity";
 import { User } from "../../entities/users.entity";
 import AppError from "../../errors/appError";
-import { ICreateTransaction } from "../../interfaces/transactions";
+import {
+  ICreateTransaction,
+  ICreateTransactionReturn,
+} from "../../interfaces/transactions";
 
 export default class CreateTransactionService {
   static async execute({
-    creditedAccount_id,
-    debitedAccount_id,
+    creditedAccount_infos,
+    debitedAccount_infos,
     value,
-  }: ICreateTransaction): Promise<Transaction> {
+  }: ICreateTransaction): Promise<ICreateTransactionReturn> {
     const transactionRepository = AppDataSource.getRepository(Transaction);
     const accountRepository = AppDataSource.getRepository(Account);
 
     const creditedAccount = await accountRepository.findOne({
       where: {
-        id: creditedAccount_id,
+        id: creditedAccount_infos.id,
       },
     });
 
     const debitedAccount = await accountRepository.findOne({
       where: {
-        id: debitedAccount_id,
+        id: debitedAccount_infos.id,
       },
     });
 
@@ -53,6 +56,16 @@ export default class CreateTransactionService {
 
     await accountRepository.save(debitedAccount);
 
-    return { ...transaction, creditedAccount, debitedAccount };
+    return {
+      ...transaction,
+      creditedAccount: {
+        id: creditedAccount.id,
+        username: creditedAccount_infos.username,
+      },
+      debitedAccount: {
+        id: debitedAccount.id,
+        username: debitedAccount_infos.username,
+      },
+    };
   }
 }

@@ -43,8 +43,14 @@ const createTransactionMiddleware = async (
     );
   }
 
-  req.creditedAccount_id = creditedUser.account.id;
-  req.debitedAccount_id = debitedUser.account.id;
+  req.creditedAccount_infos = {
+    id: creditedUser.account.id,
+    username: creditedUser.username,
+  };
+  req.debitedAccount_infos = {
+    id: debitedUser.account.id,
+    username: debitedUser.username,
+  };
 
   next();
 };

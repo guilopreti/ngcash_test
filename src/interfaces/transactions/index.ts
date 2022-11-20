@@ -1,5 +1,15 @@
+import { IAccount } from "../account";
+
 export interface ICreateTransaction {
-  creditedAccount_id: string;
-  debitedAccount_id: string;
+  creditedAccount_infos: IAccount;
+  debitedAccount_infos: IAccount;
   value: number;
+}
+
+export interface ICreateTransactionReturn {
+  id: string;
+  value: number;
+  createdAt: object;
+  debitedAccount: IAccount;
+  creditedAccount: IAccount;
 }

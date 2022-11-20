@@ -4,12 +4,12 @@ import CreateTransactionService from "../services/transactions/createTransaction
 export default class TransactionController {
   static async store(req: Request, res: Response) {
     const { value } = req.body;
-    const { creditedAccount_id, debitedAccount_id } = req;
+    const { creditedAccount_infos, debitedAccount_infos } = req;
 
     const transaction = await CreateTransactionService.execute({
       value,
-      creditedAccount_id,
-      debitedAccount_id,
+      creditedAccount_infos,
+      debitedAccount_infos,
     });
 
     return res.status(201).json(transaction);
