@@ -20,12 +20,24 @@ transactionRouter
   .get(authUserMiddleware, TransactionController.index);
 
 transactionRouter
+  .route("/date/:date_order")
+  .get(authUserMiddleware, TransactionController.indexByDate);
+
+transactionRouter
   .route("/cashout")
   .get(authUserMiddleware, TransactionController.indexCashOut);
 
 transactionRouter
+  .route("/cashout/:date_order")
+  .get(authUserMiddleware, TransactionController.indexCashOutByDate);
+
+transactionRouter
   .route("/cashin")
   .get(authUserMiddleware, TransactionController.indexCashIn);
+
+transactionRouter
+  .route("/cashin/:date_order")
+  .get(authUserMiddleware, TransactionController.indexCashInByDate);
 
 transactionRouter
   .route("/:transaction_id")

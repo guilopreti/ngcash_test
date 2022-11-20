@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const createUserValidator = {
+export const createUserValidator = {
   schema: {
     body: {
       yupSchema: yup.object().shape({
@@ -20,4 +20,13 @@ const createUserValidator = {
   },
 };
 
-export default createUserValidator;
+export const loginUserValidator = {
+  schema: {
+    body: {
+      yupSchema: yup.object().shape({
+        username: yup.string().required("username is required"),
+        password: yup.string().required("password is required"),
+      }),
+    },
+  },
+};

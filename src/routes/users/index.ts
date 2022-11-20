@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { expressYupMiddleware } from "express-yup-middleware";
-import createUserValidator from "../../validations/users";
+import {
+  createUserValidator,
+  loginUserValidator,
+} from "../../validations/users";
 
 import UserController from "../../controllers/user.controller";
 
@@ -13,6 +16,11 @@ usersRouter
     UserController.store
   );
 
-usersRouter.route("/login").post(UserController.login);
+usersRouter
+  .route("/login")
+  .post(
+    expressYupMiddleware({ schemaValidator: loginUserValidator }),
+    UserController.login
+  );
 
 export default usersRouter;

@@ -1,7 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Account } from "../../entities/accounts.entity";
 import { Transaction } from "../../entities/transactions.entity";
-import { User } from "../../entities/users.entity";
 import AppError from "../../errors/appError";
 import {
   ICreateTransaction,

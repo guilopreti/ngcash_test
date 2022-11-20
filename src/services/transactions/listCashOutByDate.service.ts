@@ -3,8 +3,12 @@ import { Transaction } from "../../entities/transactions.entity";
 import { User } from "../../entities/users.entity";
 import AppError from "../../errors/appError";
 
-export default class ListCashOutService {
-  static async execute(user_id: string) {
+export default class ListCashOutByDateService {
+  static async execute(user_id: string, date_order: string) {
+    if (date_order != "chronological" && date_order != "reverse") {
+      throw new AppError("Invalid order request!");
+    }
+
     const transactionRepository = AppDataSource.getRepository(Transaction);
     const userRepository = AppDataSource.getRepository(User);
 
@@ -53,6 +57,16 @@ export default class ListCashOutService {
       };
     });
 
-    return transactionsReturn;
+    if (date_order === "chronological") {
+      return transactionsReturn.sort(
+        (a, b) =>
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+    }
+
+    return transactionsReturn.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   }
 }
