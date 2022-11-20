@@ -16,6 +16,7 @@ transactionRouter
     authUserMiddleware,
     createTransactionMiddleware,
     TransactionController.store
-  );
+  )
+  .get(authUserMiddleware, TransactionController.index);
 
 export default transactionRouter;

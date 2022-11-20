@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CreateTransactionService from "../services/transactions/createTransaction.service";
+import ListTransactionsService from "../services/transactions/listTransactions.service";
 
 export default class TransactionController {
   static async store(req: Request, res: Response) {
@@ -13,5 +14,13 @@ export default class TransactionController {
     });
 
     return res.status(201).json(transaction);
+  }
+
+  static async index(req: Request, res: Response) {
+    const { user_id } = req;
+
+    const transactions = await ListTransactionsService.execute(user_id);
+
+    return res.status(200).json(transactions);
   }
 }

@@ -33,7 +33,7 @@ const createTransactionMiddleware = async (
   }
 
   if (creditedUser.id === debitedUser.id) {
-    throw new AppError("You cannot make a transaction for yourself!", 403);
+    throw new AppError("You cannot make a transaction to yourself!", 403);
   }
 
   if (Number(creditedUser.account.balance) < value) {
