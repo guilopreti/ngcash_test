@@ -20,6 +20,14 @@ transactionRouter
   .get(authUserMiddleware, TransactionController.index);
 
 transactionRouter
+  .route("/cashout")
+  .get(authUserMiddleware, TransactionController.indexCashOut);
+
+transactionRouter
+  .route("/cashin")
+  .get(authUserMiddleware, TransactionController.indexCashIn);
+
+transactionRouter
   .route("/:transaction_id")
   .get(authUserMiddleware, TransactionController.show);
 

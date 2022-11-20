@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import CreateTransactionService from "../services/transactions/createTransaction.service";
+import ListCashInService from "../services/transactions/listCashIn.service";
+import ListCashOutService from "../services/transactions/listCashOut.service";
 import ListTransactionsService from "../services/transactions/listTransactions.service";
 import ShowTransactionService from "../services/transactions/showTransaction.service";
 
@@ -35,5 +37,21 @@ export default class TransactionController {
     });
 
     return res.status(200).json(transaction);
+  }
+
+  static async indexCashOut(req: Request, res: Response) {
+    const { user_id } = req;
+
+    const transactions = await ListCashOutService.execute(user_id);
+
+    return res.status(200).json(transactions);
+  }
+
+  static async indexCashIn(req: Request, res: Response) {
+    const { user_id } = req;
+
+    const transactions = await ListCashInService.execute(user_id);
+
+    return res.status(200).json(transactions);
   }
 }
