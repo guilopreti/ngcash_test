@@ -19,4 +19,8 @@ transactionRouter
   )
   .get(authUserMiddleware, TransactionController.index);
 
+transactionRouter
+  .route("/:transaction_id")
+  .get(authUserMiddleware, TransactionController.show);
+
 export default transactionRouter;

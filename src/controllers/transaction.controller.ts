@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import CreateTransactionService from "../services/transactions/createTransaction.service";
 import ListTransactionsService from "../services/transactions/listTransactions.service";
+import ShowTransactionService from "../services/transactions/showTransaction.service";
 
 export default class TransactionController {
   static async store(req: Request, res: Response) {
@@ -22,5 +23,17 @@ export default class TransactionController {
     const transactions = await ListTransactionsService.execute(user_id);
 
     return res.status(200).json(transactions);
+  }
+
+  static async show(req: Request, res: Response) {
+    const { user_id } = req;
+    const { transaction_id } = req.params;
+
+    const transaction = await ShowTransactionService.execute({
+      user_id,
+      transaction_id,
+    });
+
+    return res.status(200).json(transaction);
   }
 }

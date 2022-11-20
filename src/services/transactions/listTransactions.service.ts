@@ -2,7 +2,6 @@ import { AppDataSource } from "../../data-source";
 import { Transaction } from "../../entities/transactions.entity";
 import { User } from "../../entities/users.entity";
 import AppError from "../../errors/appError";
-import { ICreateTransactionReturn } from "../../interfaces/transactions";
 
 export default class ListTransactionsService {
   static async execute(user_id: string) {

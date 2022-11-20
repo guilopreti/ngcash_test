@@ -13,3 +13,8 @@ export interface ICreateTransactionReturn {
   debitedAccount: IAccount;
   creditedAccount: IAccount;
 }
+
+export interface IShowTransaction {
+  user_id: string;
+  transaction_id: string;
+}
